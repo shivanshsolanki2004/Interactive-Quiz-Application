@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodTech Quiz Challenge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <header>
+            <div class="logo">
+                <img src="https://media.licdn.com/dms/image/v2/D4D0BAQFqLVwG9C_2Zw/company-logo_200_200/company-logo_200_200/0/1738427223589?e=2147483647&v=beta&t=4gc3_9B7prWZZSPJjg5wMvbI1-yd-zcDC1V6b5qQFxU" alt="CodTech Logo">
+                <h1>CodTech Quiz</h1>
+            </div>
+            <div class="timer-score">
+                <div class="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="time">00:00</span>
+                </div>
+                <div class="score">
+                    <i class="fas fa-star"></i>
+                    <span id="score">0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="quiz-content">
+            <div id="welcome-screen" class="screen active">
+                <h2>Welcome to CodTech Quiz Challenge!</h2>
+                <p>Test your knowledge and earn a completion certificate at the end of your internship.</p>
+                <div class="welcome-image">
+                    <img src="https://img.itch.zone/aW1nLzIwMjg2NDkucG5n/original/p8P%2Fsp.png" alt="Quiz Illustration">
+                </div>
+                <div class="options">
+                    <label for="category">Select Category:</label>
+                    <select id="category">
+                        <option value="all">All Categories</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="web">Web Development</option>
+                    </select>
+                    
+                    <label for="difficulty">Select Difficulty:</label>
+                    <select id="difficulty">
+                        <option value="all">All Levels</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <button id="start-btn" class="btn">Start Quiz</button>
+            </div>
+
+            <div id="quiz-screen" class="screen">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                    <div class="progress-text" id="progress-text">Question 1 of 10</div>
+                </div>
+                
+                <div class="question-container">
+                    <h2 id="question-text">Loading question...</h2>
+                    <div id="options-container" class="options-container">
+                        </div>
+                </div>
+                
+                <div class="navigation">
+                    <button id="prev-btn" class="btn nav-btn" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button id="next-btn" class="btn nav-btn">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button id="submit-btn" class="btn submit-btn" style="display: none;">
+                        Submit Quiz
+                    </button>
+                </div>
+                
+                <div id="feedback" class="feedback">
+                    </div>
+            </div>
+
+            <div id="results-screen" class="screen">
+                <div class="results-content">
+                    <h2>Quiz Completed!</h2>
+                    <div class="result-summary">
+                        <div class="result-card">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>Correct Answers</h3>
+                                <p id="correct-answers">0</p>
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <i class="fas fa-times-circle"></i>
+                            <div>
+                                <h3>Wrong Answers</h3>
+                                <p id="wrong-answers">0</p>
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Time Taken</h3>
+                                <p id="time-taken">00:00</p>
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h3>Your Score</h3>
+                                <p id="final-score">0%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-message">
+                        <h3 id="performance-title">Performance</h3>
+                        <p id="performance-message">Based on your results, here's how you did...</p>
+                    </div>
+                    
+                    <div class="certificate-section">
+                        <h3>Your Completion Certificate</h3>
+                        <p>Your certificate will be issued on your internship end date.</p>
+                        <button id="preview-certificate" class="btn">Preview Certificate</button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="retry-btn" class="btn">Retry Quiz</button>
+                        <button id="new-quiz-btn" class="btn">New Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="certificate-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <div class="certificate">
+                        <div class="certificate-header">
+                            <h2>Certificate of Completion</h2>
+                            <p>This is to certify that</p>
+                        </div>
+                        <div class="certificate-body">
+                            <h3 id="certificate-name">[Your Name]</h3>
+                            <p>has successfully completed the</p>
+                            <h4>CodTech Quiz Challenge</h4>
+                            <div class="certificate-details">
+                                <p>Score: <span id="certificate-score">85%</span></p>
+                                <p>Date: <span id="certificate-date">July 18, 2023</span></p>
+                            </div>
+                        </div>
+                        <div class="certificate-footer">
+                            <div class="signature">
+                                <p>CodTech Team</p>
+                                <img src="https://img.freepik.com/premium-vector/signature_951413-443.jpg?semt=ais_hybrid&w=740" alt="Signature">
+                            </div>
+                            <div class="logo">
+                                <img src="https://media.licdn.com/dms/image/v2/D4D0BAQFqLVwG9C_2Zw/company-logo_200_200/company-logo_200_200/0/1738427223589?e=2147483647&v=beta&t=4gc3_9B7prWZZSPJjg5wMvbI1-yd-zcDC1V6b5qQFxU" alt="CodTech Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="download-certificate" class="btn">Download Certificate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
